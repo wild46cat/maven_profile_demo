@@ -14,5 +14,8 @@ public class App {
 
         String b = resourceBundle.getString("app.param2");
         System.out.println(b);
+
+
+        System.out.println("this is a test");
     }
 }
