@@ -1,21 +1,24 @@
 package com.xueyou.demo;
 
-import java.util.ResourceBundle;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
 
 /**
  * Hello world!
  */
+@Configuration
+@ComponentScan(basePackages = {"com.xueyou.demo"})
+@PropertySource(value = {"classpath:appConfig.properties"})
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("appConfig");
-        String c = resourceBundle.getString("app.encoding");
-        System.out.println(c);
-
-        String b = resourceBundle.getString("app.param2");
-        System.out.println(b);
-
-
-        System.out.println("this is a test");
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(com.xueyou.demo.App.class);
+        AppConfig appConfig = applicationContext.getBean(AppConfig.class);
+        System.out.println(appConfig.getAppName());
+        System.out.println(appConfig.getDriverName());
     }
 }
