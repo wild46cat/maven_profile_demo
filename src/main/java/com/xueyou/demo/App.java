@@ -10,8 +10,8 @@ import org.springframework.context.annotation.*;
 @Configuration
 @ComponentScan(basePackages = {"com.xueyou.demo"})
 @PropertySources({
-        @PropertySource("classpath:appConfig-dev.properties"),
-//        @PropertySource("classpath:appConfig-test.properties")
+//        @PropertySource("classpath:appConfig-dev.properties"),
+        @PropertySource("classpath:appConfig-test.properties")
 })
 public class App {
     public static void main(String[] args) {
