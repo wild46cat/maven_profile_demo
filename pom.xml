@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <springframework.version>4.3.7.RELEASE</springframework.version>
+        <springframework.version>4.3.8.RELEASE</springframework.version>
     </properties>
 
     <dependencies>
@@ -42,6 +42,7 @@
             <id>dev</id>
             <properties>
                 <db.driver>com.mysql.jdbc.Driver</db.driver>
+                <profileType>dev</profileType>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -52,6 +53,7 @@
             <id>test</id>
             <properties>
                 <db.driver>com.oracle.jdbc.Driver</db.driver>
+                <profileType>test</profileType>
             </properties>
         </profile>
     </profiles>
@@ -60,8 +62,19 @@
         <resources>
             <!--配置文件路径-->
             <resource>
-                <directory>src/main/resource</directory>
+                <directory>${project.basedir}/src/main/resource</directory>
                 <filtering>true</filtering>
+                <excludes>
+                    <exclude>appConfig-dev.properties</exclude>
+                    <exclude>appConfig-test.properties</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/resource</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>appConfig-${profileType}.properties</include>
+                </includes>
             </resource>
         </resources>
         <plugins>

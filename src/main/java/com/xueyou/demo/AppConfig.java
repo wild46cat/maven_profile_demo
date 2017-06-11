@@ -17,11 +17,18 @@ public final class AppConfig {
     @Value("${app.driver}")
     private String driverName;
 
+    @Value("${app.profileType}")
+    private String profileType;
+
     public String getAppName() {
         return appName;
     }
 
     public String getDriverName() {
         return driverName;
+    }
+
+    public String getProfileType() {
+        return profileType;
     }
 }
